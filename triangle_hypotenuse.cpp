@@ -67,6 +67,7 @@ int main()
 
     do
     {
+        cout << "--------------------T R I A N G L E-------------------\n";
         double base, height;
         cout << "\nEnter the base: ";
         cin >> base;
