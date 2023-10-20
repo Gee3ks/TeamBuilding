@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool repeat(string repeat = ""){
+    while (repeat != "y" && repeat != "n") {
+        cout << "Do you want to continue (y,n)?";
+        cin >> repeat;
+    }
+    return repeat == "y";
+}
+
+int get_value(string message){
+    int value;
+    do {
+        cout << message;
+        cin >> value;
+    }while (value < 0);
+
+    return value;
+}
+
+double singleStockValueCalc(int perStockValue, int numerator, int denominator){
+    return perStockValue+(static_cast<double>(numerator)/denominator);
+}
+
+double totalStockValueCalc(double singleStockValue,int stockAmount){
+    return stockAmount * singleStockValue;
+}
+
+int main(){
+    do {
+        double  totalStockValue, singleStockValue, fractionValue;
+        int stockAmount = 0, perStockValue = 0, numerator = 0, denominator = 0;
+
+        stockAmount = get_value("How many stocks do you have: ");
+        perStockValue = get_value("What is the whole-dollar-portion of a stock: ");
+        numerator = get_value("What is the numerator: ");
+        denominator = get_value("What is the denominator: ");
+
+        singleStockValue = singleStockValueCalc(perStockValue, numerator, denominator);
+        totalStockValue = totalStockValueCalc( singleStockValue,  stockAmount);
+
+        cout << "A single stock is worth $" << singleStockValue << '\n';
+        cout << "The total value of your holdings is $" << totalStockValue << '\n';
+    }while (repeat());
+
+
+}
