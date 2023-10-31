@@ -15,7 +15,7 @@ struct Stock
 };
 
 // Function for gathering string input
-string get_input_str(const string &prompt)
+string getString(const string &prompt)
 {
     string user_input_str = "";
     cout << prompt;
@@ -25,7 +25,7 @@ string get_input_str(const string &prompt)
 
 // function for gathering user input
 // :numbers
-double get_value(const string &prompt)
+double getValue(const string &prompt)
 {
     double num_val(0);
     while (true)
@@ -66,11 +66,11 @@ int main(void)
         // Loop two times
         for (int index = 0; index < 2; index++)
         {
-            brands[index].brand_name = get_input_str("Enter the name of the company: ");
-            brands[index].number_of_shares = get_value("Enter number of shares: ");
-            brands[index].stock_price = get_value("Enter the price for single stock: $");
-            brands[index].numerator = get_value("Enter value for numerator: ");
-            brands[index].denominator = get_value("Enter value for denominator: ");
+            brands[index].brand_name = getString("Enter the name of the company: ");
+            brands[index].number_of_shares = getValue("Enter number of shares: ");
+            brands[index].stock_price = getValue("Enter the price for single stock: $");
+            brands[index].numerator = getValue("Enter value for numerator: ");
+            brands[index].denominator = getValue("Enter value for denominator: ");
         }
 
         fixed;
