@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <limits>
+#include <limits> // Include to be able to clear input buffer
 using namespace std;
 
+// Used Struct to let add mutliple data instances / object
 struct Stock
 {
     string brand_name;
@@ -22,6 +23,8 @@ string get_input_str(const string &prompt)
     return user_input_str;
 }
 
+// function for gathering user input
+// :numbers
 double get_value(const string &prompt)
 {
     double num_val(0);
@@ -39,6 +42,7 @@ double get_value(const string &prompt)
     return num_val;
 }
 
+// Function for repeating the program flow
 bool repeat()
 {
     string response("");
@@ -55,8 +59,11 @@ int main(void)
 
     do
     {
+        // Speecified the struct range
+        // In this case, 2 (2 companies only)
         Stock brands[2];
 
+        // Loop two times
         for (int index = 0; index < 2; index++)
         {
             brands[index].brand_name = get_input_str("Enter the name of the company: ");
