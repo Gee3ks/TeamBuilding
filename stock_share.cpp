@@ -7,31 +7,31 @@ using namespace std;
 // Used Struct to let add mutliple data instances / object
 struct Stock
 {
-    string brand_name;
-    int number_of_shares;
-    double stock_price;
+    string brandName;
+    int numberOfShares;
+    double stockPrice;
     double numerator;
     double denominator;
 };
 
 // Function for gathering string input
-string getString(const string &prompt)
+string getString(const string &message)
 {
-    string user_input_str = "";
-    cout << prompt;
-    cin >> user_input_str;
-    return user_input_str;
+    string userInput = "";
+    cout << message;
+    cin >> userInput;
+    return userInput;
 }
 
 // function for gathering user input
 // :numbers
-double getValue(const string &prompt)
+double getValue(const string &message)
 {
-    double num_val(0);
+    double numVal(0);
     while (true)
     {
-        cout << prompt;
-        if (cin >> num_val && num_val > 0)
+        cout << message;
+        if (cin >> numVal && numVal > 0)
         {
             break;
         }
@@ -39,7 +39,7 @@ double getValue(const string &prompt)
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cerr << "Invalid Value. Please Try Again!" << endl;
     }
-    return num_val;
+    return numVal;
 }
 
 // Function for repeating the program flow
@@ -66,9 +66,9 @@ int main(void)
         // Loop two times
         for (int index = 0; index < 2; index++)
         {
-            brands[index].brand_name = getString("Enter the name of the company: ");
-            brands[index].number_of_shares = getValue("Enter number of shares: ");
-            brands[index].stock_price = getValue("Enter the price for single stock: $");
+            brands[index].brandName = getString("Enter the name of the company: ");
+            brands[index].numberOfShares = getValue("Enter number of shares: ");
+            brands[index].stockPrice = getValue("Enter the price for single stock: $");
             brands[index].numerator = getValue("Enter value for numerator: ");
             brands[index].denominator = getValue("Enter value for denominator: ");
         }
@@ -84,8 +84,8 @@ int main(void)
              << "Market Value\t\n";
         for (const Stock &brand : brands)
         {
-            double total_market_stock_value = brand.stock_price + (brand.numerator / brand.denominator);
-            cout << brand.brand_name << '\t' << total_market_stock_value << "\t\t" << brand.number_of_shares << "\t\t" << total_market_stock_value * brand.number_of_shares << endl;
+            double totalMarketStockVal = brand.stockPrice + (brand.numerator / brand.denominator);
+            cout << brand.brandName << '\t' << totalMarketStockVal << "\t\t" << brand.numberOfShares << "\t\t" << totalMarketStockVal * brand.numberOfShares << endl;
         }
 
     } while (repeat());
