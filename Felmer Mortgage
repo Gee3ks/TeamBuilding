@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+bool repeat(string repeat = ""){
+    
+    while (repeat != "n" && repeat != "y")
+    {
+        cout << "Do you want to try again[y,n]. ";
+        cin >> repeat;
+    }
+
+    return repeat == "y";
+}
+
+double get_value(string message){
+    int value(0);
+    do
+    {
+        cout << message;
+        cin >> value;
+        if (value > 0)
+        {
+            return value;
+        }
+
+        cout << "Please try again.";
+        
+    } while (value <= 0);
+
+    return value;
+    
+}
+
+// void print(){
+//     cout
+// }
+
+double _afterTaxCost(double annualMorgageCost, double taxSavings){
+    return annualMorgageCost - taxSavings;
+}
+
+double _annualMorgageCost(double initialLoanBalance){
+    return (initialLoanBalance * .03) + (initialLoanBalance * .06);
+}
+
+double _taxSavings(double annualMorgageCost){
+    return annualMorgageCost * .35;
+}
+
+double _initialLoanBalance(double housePrice, double downPayment){
+    return housePrice - downPayment;
+}
+
+
+int main(void){
+
+    do
+    {
+        double annualAfterTaxCost(0), annualMorgageCost(0), taxSavings(0), initialLoanBalance(0), loanPrincipal(0), housePrice(0), downPayment(0);
+
+        housePrice = get_value("What is the price of the house? ");
+        downPayment = get_value("How much is your down payment? ");
+
+
+        initialLoanBalance = _initialLoanBalance(housePrice, downPayment);
+        annualMorgageCost = _annualMorgageCost(initialLoanBalance);
+        taxSavings = _taxSavings(annualMorgageCost);
+        annualAfterTaxCost = _afterTaxCost(annualMorgageCost, taxSavings);
+
+        cout << "Your annual morgage after tax is " << annualAfterTaxCost << ".\n" 
+            << initialLoanBalance << '\n'
+            << annualMorgageCost << '\n'
+            << taxSavings << '\n';
+    } while (repeat());
+    
+
+    return 0;
+}
