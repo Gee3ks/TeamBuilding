@@ -132,8 +132,8 @@ int main(void){
         endIsNextDay = get_character("Is your end time the next day[Y for yes / N for No]: ");
 
         // the following lines 122 to 124 is to get the input for the ending time and if it's in the morning or not
-        endHour = get_value("What is the starting Hour[0-11]: ");
-        endMinutes = get_value("What is the starting minute[0-59]: ");
+        endHour = get_value("What is the ending Hour[0-11]: ");
+        endMinutes = get_value("What is the ending minute[0-59]: ");
         endIsAm = get_character("What time of the day is it[A for AM / P for PM]: ");
 
         //solves everything using the function
