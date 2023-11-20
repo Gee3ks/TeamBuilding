@@ -44,6 +44,7 @@ class Market {
   public:
 
   int column_size;
+  string line_character;
   vector<Stock> stocks;
   vector<string> headers = {"Stock Name", "Market Price", "Total Shares", "Market value"};
 
@@ -59,9 +60,11 @@ class Market {
   }
 
   void display_line(void) {
-    for (string header: headers) {
+
+    //for (string header: headers) {
+    for (int header = 0; header < headers.size(); header++) {
       for (int count=0; count < column_size; count++) {
-        cout << "-";
+        cout << line_character;
       }
     }
     cout << endl;
@@ -82,14 +85,28 @@ class Market {
       total_trade_value = total_trade_value + stock.market_value;
     }
     display_line();
-    cout  << setw(column_size * 3) << "Total Trade Value"
+    cout  << setw(column_size * (headers.size() - 1)) << "Total Trade Value"
           << setw(column_size) << total_trade_value
           << endl;
     display_line();
   }
 
-  Market(int size) {
+  void get_stock_names(void) {
+    string stock_name;
+    while (true) {
+      cout << "Enter Stock Name (press enter to stop): ";
+      getline(cin, stock_name);
+      if (stock_name.empty()) {
+        break;
+      }
+      add_name(stock_name);
+      cin.ignore();
+    }
+  }
+
+  Market(int size, string linechar) {
     column_size = size;
+    line_character = linechar;
   }
 };
 
@@ -97,15 +114,14 @@ bool repeat(string repeat = "") {
   while (repeat != "y" && repeat != "n") {
     cout << "Do you want to continue?(y,n) ";
     cin >> repeat;
+    cin.ignore();
   } return repeat == "y";
 }
 
 int main(void) {
   do {
-    Market stocks(15);
-    stocks.add_name("Jollibee");
-    stocks.add_name("Mac Donalds");
-    stocks.add_name("RJ Pizza");
+    Market stocks(15, "-");
+    stocks.get_stock_names();
     stocks.display_values();
   } while (repeat());
 
