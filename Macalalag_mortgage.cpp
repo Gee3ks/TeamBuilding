@@ -10,10 +10,10 @@ double calculate_mortgage_cost(double loan_balance, double interest_rate)
     return mortgage_cost;
 }
 
-double calculate_tax_savings(double interestPayment)
+double calculate_tax_savings(double interest_payment)
 {
     double tax_rate = 0.35;
-    double tax_savings = tax_rate * interestPayment;
+    double tax_savings = tax_rate * interest_payment;
     return tax_savings;
 }
 
