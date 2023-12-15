@@ -1,9 +1,8 @@
-
 // File Name: fitness_app.cpp
-// Author: Group 3
+// Author: Group 1
 // Final Project
 // Description: Fitness App program
-// Last Changed: December 14
+// Last Changed: December 14, 2023
 
 #include <iostream>
 #include <map>
