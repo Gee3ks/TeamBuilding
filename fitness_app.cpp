@@ -13,11 +13,13 @@
 
 using namespace std;
 
+// Function for calculating BMI
 double compute_bmi(double weight, double height)
 {
     return weight / (height * height);
 }
 
+// Generic function for gathering positive number inputs
 double get_value(string message)
 {
     double value;
@@ -29,6 +31,7 @@ double get_value(string message)
     return value;
 }
 
+// Function to convert any string value to lowercase
 void to_lower(string &strvar)
 {
     for (char &c : strvar)
@@ -37,6 +40,7 @@ void to_lower(string &strvar)
     }
 }
 
+// Function for getting user string input with specific choices
 string get_answer(string message, string choices, string answer = " ")
 {
     while (choices.find(answer) == string::npos)
@@ -48,9 +52,10 @@ string get_answer(string message, string choices, string answer = " ")
     return answer;
 }
 
+// Function to classify BMI based on predefined ranges
 string bmi_classification(double bmi)
 {
-    // https://www.calculator.net/bmi-calculator.html
+    // BMI classification ranges and labels
     map<double, string> adult_bmi = {
         {16, "Severe Thinness"},
         {17.0, "Moderate Thinness"},
@@ -62,9 +67,11 @@ string bmi_classification(double bmi)
         {999.9, "Obese Class III"},
     };
 
+    // Return BMI classification based on the provided value
     return adult_bmi.upper_bound(bmi)->second;
 }
 
+// Function to calculate total calories from food choices
 double food_calories(void)
 {
     map<string, double> foods = {
@@ -80,6 +87,7 @@ double food_calories(void)
     double total_calories = 0.0;
     do
     {
+        // Display food choices and gather user input
         cout << "Food to choice and it's calories: " << endl;
         for (auto food : foods)
         {
@@ -101,6 +109,7 @@ double food_calories(void)
     return total_calories;
 }
 
+// Function to gather calories from non-workout activities
 double non_workout_calories(void)
 {
     cout << endl
@@ -108,6 +117,7 @@ double non_workout_calories(void)
     double total_calories = 0.0;
     do
     {
+        // Gather non-workout activity details
         string activity;
         cout << "Enter non workout activity: ";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -120,6 +130,7 @@ double non_workout_calories(void)
     return total_calories;
 }
 
+// Function to gather calories from workout activities
 double workout_calories(void)
 {
     map<string, double> workouts = {
@@ -135,6 +146,7 @@ double workout_calories(void)
     double total_calories = 0.0;
     do
     {
+        // Display workout choices and gather user input
         cout << "Workouts to choice and it's calories: " << endl;
         for (auto workout : workouts)
         {
@@ -157,6 +169,7 @@ double workout_calories(void)
     return total_calories;
 }
 
+// Function to get the date from the user
 tm get_date(string message)
 {
     tm date = {};
@@ -165,6 +178,7 @@ tm get_date(string message)
     return date;
 }
 
+// Function to calculate end date based on start date and days
 string end_date_str(tm &start_date, double days)
 {
     time_t start_time = mktime(const_cast<tm *>(&start_date));
@@ -178,20 +192,25 @@ string end_date_str(tm &start_date, double days)
     return formatted_date.str();
 }
 
+// Main function
 int main(void)
 {
+    // Gather initial user information
     double current_weight = get_value("Enter current weight (kg): ");
     double current_height = get_value("Enter current height (m): ");
     double bmi = compute_bmi(current_weight, current_height);
     string classification = bmi_classification(bmi);
 
+    // Gather calories information
     double total_food_calories = food_calories();
     double total_non_workout_calories = non_workout_calories();
     double total_workout_calories = workout_calories();
     double calories_per_day = total_food_calories - total_non_workout_calories - total_workout_calories;
 
+    // Constants
     const double calories_per_kg = 7700.0;
 
+    // Display summary
     cout << endl
          << "### SUMMARY ###" << endl;
     cout << "Number Of Calories Per Kilogram: " << calories_per_kg << endl;
@@ -204,9 +223,11 @@ int main(void)
     cout << "Total Workout Calories: " << total_workout_calories << endl;
     cout << "Consumed Calories Per Day : " << calories_per_day << endl;
 
+    // Gather additional user information
     double desired_weight = get_value("Enter desired weight (kg): ");
     tm start_date = get_date("Enter start date (mm/dd/yyyy): ");
 
+    // Display analysis based on desired weight and calories
     cout << endl
          << "### Analysis ###" << endl;
     if (desired_weight > current_weight)
